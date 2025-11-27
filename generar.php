@@ -119,6 +119,8 @@ if (isset($_SESSION['mensaje_error'])) {
 
 <br>
 
+<!-- Apartado 6 añadiendo el formulario -->
+
 <form method="post">
     Referencia: <input type="text" name="referencia" minlength="1">
     Concepto: <input type="text" name="concepto" minlength="1">
