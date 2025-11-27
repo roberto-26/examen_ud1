@@ -47,6 +47,9 @@ if (isset($_POST['crear'])){
     exit;
 }
 
+/* Apartado 8
+ */
+
 /* Con esto intento eliminar pero por alguna razón me da un error HTTP 500 al darle al boton eliminar
  *if(isset($_POST['eliminar'])){
     foreach ($albaran as $producto){
