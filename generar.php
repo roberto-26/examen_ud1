@@ -24,6 +24,45 @@ if (!isset($_SESSION['albaran'])){
     $albaran = $_SESSION['albaran'];
 }
 
+// Añadir producto
+if (isset($_POST['crear'])){
+    //Comprobar campos
+    if ($_POST['unidades'] <= 0){
+        $_SESSION['mensaje_error'] = "No se pueden tener 0 unidades al añadir un producto";
+    }
+    elseif ($_POST['p_unidad'] <= 0){
+        $_SESSION['mensaje_error'] = "El precio no puede ser cero o negativo";
+    }
+    else{
+        $albaran[] = [
+            'referencia' => $_POST['referencia'],
+            'concepto' => $_POST['concepto'],
+            'unidades' => $_POST['unidades'],
+            'precio_unidad' => $_POST['p_unidad']
+        ];
+    }
+    $_SESSION['albaran'] = $albaran;
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+/* Con esto intento eliminar pero por alguna razón me da un error HTTP 500 al darle al boton eliminar
+ *if(isset($_POST['eliminar'])){
+    foreach ($albaran as $producto){
+        if ($producto['referencia'] === $_POST['eliminar']){
+            unset($albaran[$producto]);
+            break;
+        }
+    }
+    $_SESSION['albaran'] = $albaran;
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+ */
+
+
 ?>
 <!DOCTYPE html>
 <html>
