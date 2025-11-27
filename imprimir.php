@@ -46,7 +46,36 @@ global $conceptos;
         $unidades += $concepto['unidades'];
     }
 
-    
+    if ($suma_subtotal >= 2000 and $suma_subtotal < 3000) {
+        $descuento = 0.10;
+    }
+    else if ($suma_subtotal >= 3000) {
+        $descuento = 0.20;
+    }
+
+    echo "<tr>";
+    echo "<td></td>";
+    echo "<td>" . $unidades . "</td>";
+    echo "<td colspan='3' style='text-align: right;'> Bruto: </td>";
+    echo "<td>" . $suma_subtotal . " €</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<td colspan='5' style='text-align: right;'> Descuento (" . $descuento*100 . " %):</td>";
+    echo "<td>-" . number_format($suma_subtotal*$descuento,2) . " €</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<td colspan='5' style='text-align: right;'> IVA:</td>";
+    echo "<td>" . number_format(($suma_subtotal-$suma_subtotal*$descuento)*0.21,2) . " €</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<td colspan='5' style='text-align: right;'>Neto:</td>";
+    $totalSinDescuento = $suma_subtotal-$suma_subtotal*$descuento;
+    echo "<td>" . number_format($totalSinDescuento+($totalSinDescuento*0.21),2) . " €</td>";
+    echo "</tr>";
+
     ?>
 
 </table>
