@@ -47,6 +47,39 @@ if (isset($_POST['crear'])){
     exit;
 }
 
+//Sumar y restar unidades
+if(isset($_POST['sumar'])){
+
+    $referencia_post = $_POST['sumar'];
+
+    for($i = 0; $i < count($albaran); $i++) {
+        if($albaran[$i]['referencia'] == $referencia_post){
+            $albaran[$i]['unidades']++;
+        }
+    }
+
+    $_SESSION['albaran'] = $albaran;
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+if(isset($_POST['restar'])){
+
+    $referencia_post = $_POST['restar'];
+
+    for($i = 0; $i < count($albaran); $i++) {
+        if($albaran[$i]['referencia'] == $referencia_post && $albaran[$i]['unidades'] > 0){
+            $albaran[$i]['unidades']--;
+        }
+    }
+
+    $_SESSION['albaran'] = $albaran;
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
 /* Apartado 8
  */
 
